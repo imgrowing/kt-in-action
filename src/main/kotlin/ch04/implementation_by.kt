@@ -12,6 +12,14 @@ class CountableList<E>(val list: MutableList<E> = mutableListOf()): MutableList<
 
 }
 
+class IntList(private val innerList: MutableList<Int> = mutableListOf()) : MutableList<Int> by innerList {
+    override fun add(element: Int): Boolean {
+        println("add : $element")
+        return innerList.add(element)
+    }
+}
+
+
 fun main(args: Array<String>) {
     val countableList = CountableList<String>()
     countableList.add("a")
@@ -25,4 +33,8 @@ fun main(args: Array<String>) {
     add count : 3
     [a, b, c]
      */
+
+    val intList = IntList()
+    intList.add(1)
+    intList.add(2)
 }
